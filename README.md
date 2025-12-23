@@ -8,3 +8,6 @@ Adjust variables in "chemistry.py" and "physics.py"
 
 HOW TO RUN?
 - Fork the repository and run "main.py" on your terminal
+
+CODE SHOWCASE HERE:
+https://www.youtube.com/watch?v=AUlwlbtnwDM
