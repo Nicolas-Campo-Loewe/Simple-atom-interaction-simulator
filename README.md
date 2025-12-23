@@ -7,4 +7,4 @@ Bonds are formed to complete the valence layer. They can be covalent, ionic or m
 Adjust variables in "chemistry.py" and "physics.py"
 
 HOW TO RUN?
-- Dork the repository and run "main.py" on your terminal
+- Fork the repository and run "main.py" on your terminal
