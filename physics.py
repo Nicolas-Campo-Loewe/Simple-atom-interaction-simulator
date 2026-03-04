@@ -13,10 +13,26 @@ NONBONDED_SOFT_REPULSION = 6.0
 NONBONDED_RANGE = 42.0
 
 BOND_SPRING_CONSTANT = 0.32
+
+import math
+import random
+
+DEFAULT_TEMPERATURE = 1.0
+TIME_STEP = 0.2
+MAX_SPEED = 9.5
+
+THERMOSTAT_STRENGTH = 0.02
+LANGEVIN_GAMMA = 0.04       
+
+NONBONDED_REPULSION = 140.0
+NONBONDED_SOFT_REPULSION = 6.0
+NONBONDED_RANGE = 42.0
+
+BOND_SPRING_CONSTANT = 0.32
 BOND_DAMPING = 0.03
-BOND_BREAK_THRESHOLD = 1.9     # factor sobre longitud de equilibrio
-BOND_FORCE_CAP = 6.5           # evita "patadas" numéricas
-BOND_SOFTSTART_STEPS = 12      # rampa de entrada de fuerza
+BOND_BREAK_THRESHOLD = 1.9
+BOND_FORCE_CAP = 6.5
+BOND_SOFTSTART_STEPS = 12
 
 DIPOLE_STRENGTH = 0.22
 DIPOLE_VISUAL_SCALE = 18.0
@@ -26,7 +42,6 @@ WORLD_HEIGHT = 800
 
 
 def wrap(dx, dy):
-    """Condiciones periódicas (toro)."""
     if dx > WORLD_WIDTH * 0.5:
         dx -= WORLD_WIDTH
     elif dx < -WORLD_WIDTH * 0.5:
@@ -46,6 +61,7 @@ def limit_speed(vx, vy, max_speed=MAX_SPEED):
         s = max_speed / math.sqrt(v2)
         return vx * s, vy * s
     return vx, vy
+
 
 def compute_nonbonded_force(p_i, p_j):
     dx = p_j.x - p_i.x
@@ -70,6 +86,7 @@ def compute_nonbonded_force(p_i, p_j):
     rep = NONBONDED_SOFT_REPULSION / r
     F = -rep
     return (nx * F, ny * F)
+
 
 def compute_bond_force(p_i, p_j, bond):
     dx = p_j.x - p_i.x
@@ -113,6 +130,7 @@ def compute_bond_force(p_i, p_j, bond):
     broken = (r > bond.length * BOND_BREAK_THRESHOLD)
     return (fx, fy, broken)
 
+
 def compute_dipole_torque(p_i, p_j, dipole_vector):
     dx = p_j.x - p_i.x
     dy = p_j.y - p_i.y
@@ -139,9 +157,12 @@ def compute_dipole_torque(p_i, p_j, dipole_vector):
 
     return (fx_i, fy_i, fx_j, fy_j)
 
-def apply_langevin(p, temperature, bond_count, avg_bond_order):
 
+def apply_langevin(p, temperature, bond_count, avg_bond_order):
     gamma = LANGEVIN_GAMMA
+
+    # Factor que reduce ruido cuando el átomo está muy enlazado
+    bonding_factor = 1.0 / (1.0 + 0.35 * bond_count * max(1.0, avg_bond_order))
 
     sigma = math.sqrt(2.0 * gamma * temperature) * bonding_factor
 
@@ -185,6 +206,7 @@ def integrate(particles, forces, temperature):
             avg_order = 0.0
         else:
             avg_order = 1.5
+
         apply_langevin(p, temperature, bond_count, avg_order)
 
     rescale_velocities(particles, temperature)
