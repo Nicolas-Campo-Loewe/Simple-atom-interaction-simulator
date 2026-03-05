@@ -1,4 +1,4 @@
-# Simple-atom-interaction-simulatorwswdw
+# Simple-atom-interaction-simulator
 
 Includes dipole moments and kinetic energy (adjusted by temperature via up/down keys). 
 
