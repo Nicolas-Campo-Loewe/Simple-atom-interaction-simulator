@@ -1,6 +1,6 @@
 # ATOMIC DYNAMICS SIMULATOR
 <br><br>
-## General explanation
+## Overview
 
 This project simulates atomic interactions based on simplified physical and chemical principles. The simulation models the motion of atoms, their interactions, and the formation of chemical bonds under different energetic and environmental conditions.
 
