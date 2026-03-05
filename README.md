@@ -13,12 +13,7 @@ When atoms approach each other, the simulation evaluates the possibility of form
 
 In addition, covalent interactions may result in single, double, or triple bonds, depending on the valence requirements of the atoms involved. The strength and stability of each bond depend on multiple factors such as electronegativity differences, bonding type, and local energetic conditions within the simulation.
 
-The physical behavior of atoms and the chemical rules governing bonding are implemented separately in the project, to keep the system modular and easy to modify. Key parameters and rules can also be customized in their corresponding files:
-
-`physics.py`
-`chemics.py`
-
-This structure allows users to experiment with different modeled scenarios.
+The physical behavior of atoms and the chemical rules governing bonding are implemented separately in the project, to keep the system modular and easy to modify. Key parameters and rules can also be customized in their corresponding files: `physics.py`, `chemics.py`. This structure allows users to experiment with different modeled scenarios.
 
 **How to Run**
 1. Fork or clone this repository.
