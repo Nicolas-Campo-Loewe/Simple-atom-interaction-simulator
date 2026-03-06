@@ -1,5 +1,5 @@
 # ATOMIC DYNAMICS SIMULATOR
-<br><br>
+---
 ## Overview
 
 This project simulates atomic interactions based on simplified physical and chemical principles. The simulation models the motion of atoms, their interactions, and the formation of chemical bonds under different energetic and environmental conditions.
@@ -75,15 +75,14 @@ P_BOND_HIGH_T_BOOST = 0.10
 P_DISSOC_BASE = 0.005
 P_DISSOC_HIGH_T = 0.05
 ```
-
-
+---
 ## How to Run
 
 1. Fork or clone this repository.
 2. Open a terminal in the project directory.
 3. Run the simulation with `main.py`
 <br><br>
-
+---
 ## Code demonstration
 
 https://www.youtube.com/watch?v=AUlwlbtnwDM
